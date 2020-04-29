@@ -1,0 +1,35 @@
+ <article id="success">
+                <h1 class="major">Mensaje enviado con éxito</h1>
+            </article>
+
+            
+            <article id="contact">
+                <h2 class="major">Contacto</h2>
+                <form onsubmit="submit()">
+                    <!-- <form method="post" action=sendmail.php> -->
+                    <div class="fields">
+                        <div class="field half action">
+                            <label for="name">Nombre</label>
+                            <input type="text" name="name" id="name" required />
+                        </div>
+                        <div class="field half action">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required />
+                        </div>
+                        <div class="field action">
+                            <label for="subject">Asunto</label>
+                            <input type="text" name="subject" id="subject" />
+                        </div>
+                        <div class="field action">
+                            <label for="message">Mensaje</label>
+                            <textarea name="message" id="message" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li><button id="submitbtn" onclick="submit()" name="submitbtn" value="Enviar" class="primary">Enviar</button></li>
+                        <li>
+                            <input type="reset" value="Resetear formulario" href="index.html">
+                            </input>
+                        </li>
+                    </ul>
+                </form>
