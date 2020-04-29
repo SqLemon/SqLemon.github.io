@@ -22,18 +22,23 @@
 
         function submit() {
             var data = {
-                'name': $('name').val(),
-                'email': $('email').val(),
-                'subject': $('subject').val(),
-                'message': $('message').val()
+                'name': $('#name').val(),
+                'email': $('#email').val(),
+                'subject': $('#subject').val(),
+                'message': $('#message').val()
             };
 
-            $.post('sqlemon-webapp.herokuapp.com/sendemail', data, null, 'json')
-                .done(() => {
-                    alert('Mensaje enviado');
-                    document.location.href = "/";
-                })
-                .fail(data => alert(data.error));
+            $.ajax({
+                type: "POST",
+                url: "https://sqlemon-webapp.herokuapp.com/sendemail?callback=",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json"
+            }).done(() => {
+                alert('Mensaje enviado');
+                document.location.href = "/";
+            }).fail(data => alert(data.error));
         }
     </script>
     <noscript>
@@ -131,7 +136,7 @@
                         </div>
                     </div>
                     <ul class="actions">
-                        <li><input type="submit" id="submitbtn" name="submitbtn" value="Enviar" class="primary" /></li>
+                        <li><button id="submitbtn" onclick="submit()" name="submitbtn" value="Enviar" class="primary">Enviar</button></li>
                         <li>
                             <input type="reset" value="Resetear formulario" href="index.html">
                             </input>
