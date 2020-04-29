@@ -18,23 +18,23 @@
             var array = document.getElementsByTagName('body')[0].getElementsByTagName('a');
             var element = array[array.length - 1].parentElement;
             element.parentNode.removeChild(element);
-
-            $('submitbtn').on('click', function() {
-                var data = {
-                    'name': $('name').val(),
-                    'email': $('email').val(),
-                    'subject': $('subject').val(),
-                    'message': $('message').val()
-                };
-
-                $.post('sqlemon-webapp.herokuapp.com/sendemail', data, null, 'json')
-                    .done(() => {
-                        alert('Mensaje enviado');
-                        document.location.href = "/";
-                    })
-                    .fail(data => alert(data.error));
-            })
         });
+
+        function submit() {
+            var data = {
+                'name': $('name').val(),
+                'email': $('email').val(),
+                'subject': $('subject').val(),
+                'message': $('message').val()
+            };
+
+            $.post('sqlemon-webapp.herokuapp.com/sendemail', data, null, 'json')
+                .done(() => {
+                    alert('Mensaje enviado');
+                    document.location.href = "/";
+                })
+                .fail(data => alert(data.error));
+        }
     </script>
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
@@ -110,7 +110,7 @@
 
             <article id="contact">
                 <h2 class="major">Contacto</h2>
-                <form>
+                <form onsubmit="submit()">
                     <!-- <form method="post" action=sendmail.php> -->
                     <div class="fields">
                         <div class="field half action">
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <ul class="actions">
-                        <li><button id="submitbtn" value="Enviar" class="primary"></button>
+                        <li><input type="submit" id="submitbtn" name="submitbtn" value="Enviar" class="primary" /></li>
                         <li>
                             <input type="reset" value="Resetear formulario" href="index.html">
                             </input>
